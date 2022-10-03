@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 // use App\Http\Controllers\Test\ControllerDua;
 use Illuminate\Http\Request;
 
+
 // require_once base_path('App/Http/Controllers/autoload.php');
 // require_once "App\Http\Controllers\Test\ControllerSatu.php";
 // require_once "D:\application\\example-app1\\app\\Http\\Controllers\\Test\\ControllerSatu.php";
@@ -16,6 +17,28 @@ class TestController extends Controller
 {
   public function index()
   {
+    $class = 'App\Http\Controllers\ControllerSatu';
+    // $path = __DIR__ . '\\' . 'Test\\' . $class . '.php';
+    // require $path;
+
+    $instance = new $class('tes4');
+    
+    if (class_exists(ControllerSatu::class)){
+      return $instance->Index();
+      return "class sudah di loaded";
+    } else {
+      return "class belum di loaded";
+    }
+
+    $class = 'ControllerDua';
+    $path = __DIR__ . '\\' . 'Test\\' . $class . '.php';
+    require $path;
+    // return file_exists($path);
+    return class_exists($class);
+    $instance = new $path('tes4');
+    return $instance->Index();
+
+
     // GAGAL saat if class_exist()
     $class = 'ControllerDua';
     $path = __DIR__ . '\\' . 'Test\\' . $class . '.php';
